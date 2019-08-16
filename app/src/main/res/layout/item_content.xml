@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="contentItemViewModel"
+            type="com.example.usecase3.ContentItemViewModel" />
+
+        <variable
+            name="mainViewModel"
+            type="com.example.usecase3.MainViewModel" />
+
+        <import type="androidx.recyclerview.widget.RecyclerView" />
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{contentItemViewModel.title}"
+            android:textAllCaps="true"
+            android:textColor="#000"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Title" />
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@{contentItemViewModel.logo}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="@{contentItemViewModel.showLogo() ? View.VISIBLE : View.GONE}"/>
+
+        <TextView
+            android:id="@+id/loginStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:textColor="#000"
+            android:textSize="25dp"
+            android:visibility="@{contentItemViewModel.showLoginStatus() ? View.VISIBLE : View.GONE}"
+            android:text="@{contentItemViewModel.loggedIn ? @string/login : @string/not_login}"
+            tools:text="Logged In"/>
+
+        <TextView
+            android:id="@+id/primeStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/loginStatus"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:textColor="#000"
+            android:textSize="25dp"
+            android:visibility="@{contentItemViewModel.showPrimeDetails() ? View.VISIBLE : View.GONE}"
+            android:text="@{contentItemViewModel.loggedIn ? @string/login : @string/not_login}"
+            tools:text="Prime account"/>
+
+        <TextView
+            android:id="@+id/fee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{contentItemViewModel.subscriptionFee}"
+            android:visibility="@{contentItemViewModel.showSubscriptionFee() ? View.VISIBLE : View.GONE}"
+            android:textAllCaps="true"
+            android:textColor="#000"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="360.75" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
